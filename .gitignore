@@ -1,0 +1,11 @@
+/0.25/*
+!/0.25/.gitkeep
+/1km/*
+!/1km/.gitkeep
+/calculated_data/*
+!/calculated_data/.gitkeep
+/ncs/*
+!/ncs/.gitkeep
+/shp/*
+!/shp/.gitkeep
+/src/lun_wen/__pycache__/*
