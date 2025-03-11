@@ -9,3 +9,5 @@
 /shp/*
 !/shp/.gitkeep
 /src/lun_wen/__pycache__/*
+/0.1/*
+/data/*

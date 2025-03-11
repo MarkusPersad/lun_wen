@@ -3,7 +3,7 @@ from lun_wen.translate_data import tiffs_to_nc
 
 if __name__ == "__main__":
     # 定义输入输出路径
-    input_dir = Path("0.25")
+    input_dir = Path("0.1")
     output_dir = Path("ncs")
 
     # 创建输出父目录（自动处理路径存在性）
