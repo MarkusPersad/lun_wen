@@ -1,5 +1,4 @@
 from pathlib import Path
-import pyogrio
 import xarray as xr
 import os
 from dask.diagnostics.progress import ProgressBar
@@ -32,7 +31,7 @@ def get_etccdi_stats(nc_path:str, var_name:str,output_dir:str,chunks :int | dict
         ds.close()
 
 
-def calculate_heatwave_events(nc_path: str, out_dir: str, temp_var: str = 'tm', threshold: float = 35.0, min_duration: int = 6, chunks: dict = {"valid_time": 100},shp:str =""):
+def calculate_heatwave_events(nc_path: str, out_dir: str, temp_var: str = 'tm', threshold: float = 35.0, min_duration: int = 6, chunks: dict = {"valid_time": 100}):
     """
     计算连续高温事件（≥阈值温度且持续≥指定天数）
 
@@ -74,9 +73,5 @@ def calculate_heatwave_events(nc_path: str, out_dir: str, temp_var: str = 'tm', 
                 vectorize=True,
                 dask="parallelized",
                 output_dtypes=[float]).compute()
-        if shp != "":
-            gdf = pyogrio.read_dataframe(shp)
-            geometry = gdf.geometry.unary_union
-            che = che.rio.clip([geometry],drop=True,crs=4326)
         che.rio.to_raster(os.path.join(out_dir, f"{path.name.split('.')[0]}-CHE.tif"))
         ds.close()
