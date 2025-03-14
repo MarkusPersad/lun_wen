@@ -52,7 +52,7 @@ def rename_file(input_dir,output_dir=None)->None:
         os.rename(os.path.join(input_dir, file), new_filepath)
 
 
-def tiffs_to_nc(input_dir:str,output_nc:str,var:str,chunks:int| dict =512,bands=False,works:int=4)->None:
+def tiffs_to_nc(input_dir:str,output_nc:str,var:str,chunks:int| dict =512,bands=False,works:int=4,timeformat:str="%Y%m%d")->None:
     """
     将 TIFF 文件转换为 NetCDF 文件。
     参数：
@@ -70,7 +70,7 @@ def tiffs_to_nc(input_dir:str,output_nc:str,var:str,chunks:int| dict =512,bands=
     for _,file in enumerate(files):
         date_str = os.path.basename(file).split('.')[0]
         try:
-            date = pd.to_datetime(date_str,format="%Y%m%d")
+            date = pd.to_datetime(date_str,format=timeformat)
         except ValueError:
             raise ValueError(f"无法解析日期字符串：{date_str}")
         xds = rxr.open_rasterio(file,chunks=chunks,cache=False)

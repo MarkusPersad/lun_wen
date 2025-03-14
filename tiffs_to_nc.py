@@ -3,8 +3,8 @@ from lun_wen.translate_data import tiffs_to_nc
 
 if __name__ == "__main__":
     # 定义输入输出路径
-    input_dir = Path("0.1")
-    output_dir = Path("ncs")
+    input_dir = Path("data/1km")
+    output_dir = Path("mk")
 
     # 创建输出父目录（自动处理路径存在性）
     output_parent = output_dir / input_dir.name
@@ -23,8 +23,9 @@ if __name__ == "__main__":
             input_dir=str(folder),  # 直接使用子文件夹的完整路径
             output_nc=str(output_nc),
             var="t2m",
+            timeformat="%Y",
             chunks={
-                'y': 71,
-                'x': 122
+                'y': 1024,
+                'x': 1024
             }
         )
