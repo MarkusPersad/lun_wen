@@ -44,10 +44,10 @@ def rename_file(input_dir,output_dir=None)->None:
             continue
         original = file[:-4]
         year = original[:4]
-        day_num = int(original[4:])
-        start_date = datetime.strptime(f"{year}-01-01", "%Y-%m-%d")
-        target_date = start_date + timedelta(days=day_num - 1)
-        new_filename = f"{target_date.strftime('%Y%m%d')}.tif"
+        # day_num = int(original[4:])
+        # start_date = datetime.strptime(f"{year}-01-01", "%Y-%m-%d")
+        # target_date = start_date + timedelta(days=day_num - 1)
+        new_filename = f"{year}.tif"
         new_filepath = os.path.join(output_dir, new_filename)
         os.rename(os.path.join(input_dir, file), new_filepath)
 

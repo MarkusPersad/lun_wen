@@ -128,6 +128,14 @@ def mannkendall(
                 # 结果处理
                 significant = sen_slope.where(np.abs(z_score) >= trusted)
 
+                result = xr.Dataset({
+                    "Slope":sen_slope,
+                    "Z-score":z_score,
+                    "Significant":significant
+                })
+                base = os.path.basename(nc_path).split('.')[0]
+                result.to_netcdf(os.path.join(out_dir, f"{base}_Slope_MK.nc"))
+
                 # 保存结果
                 base = os.path.basename(nc_path).split('.')[0]
                 sen_slope.rio.to_raster(
